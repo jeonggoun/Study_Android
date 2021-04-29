@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.button3).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                showNoti3();
             }//onClick()
         });//button3 ClickListener
         
@@ -111,5 +111,35 @@ public class MainActivity extends AppCompatActivity {
         Notification noti = builder.build();
         manager.notify(2, noti);
     }//shoNoti2()
+
+    private void showNoti3() {  //알림 띄울 때 사용할 메소드
+        //manager 만든다
+        manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+        NotificationCompat.Builder builder = null;
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){ // API26(오레오 버전)
+            if(manager.getNotificationChannel(CHANNEL_ID3) == null){
+                manager.createNotificationChannel(new NotificationChannel
+                        (CHANNEL_ID3, CHANNEL_NAME3, NotificationManager.IMPORTANCE_DEFAULT));
+            }//if
+            builder = new NotificationCompat.Builder(this, CHANNEL_ID3);
+        }else{
+            builder = new NotificationCompat.Builder(this);
+        }//if~else
+
+        NotificationCompat.BigTextStyle style =
+                new NotificationCompat.BigTextStyle();
+        style.bigText("많은 글자들입니다. 많은 글자들입니다. 많은 글자들입니다. 많은 글자들입니다. 많은 글자들입니다. 많은 글자들입니다. 많은 글자들입니다. 많은 글자들입니다. 많은 글자들입니다. 많은 글자들입니다. 많은 글자들입니다. 많은 글자들입니다. 많은 글자들입니다. 많은 글자들입니다. 많은 글자들입니다. 많은 글자들입니다. 많은 글자들입니다. ");
+        style.setBigContentTitle("제목입니다");
+        style.setSummaryText("요약글입니다");
+
+        builder = new NotificationCompat.Builder(this, "channnel3")
+                .setSmallIcon(android.R.drawable.ic_menu_send)
+                .setStyle(style);
+
+        Notification noti = builder.build();
+        manager.notify(3, noti);
+
+    }//showNoti1()
 
 }//class
