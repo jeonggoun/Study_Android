@@ -133,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
         style.setBigContentTitle("제목입니다");
         style.setSummaryText("요약글입니다");
 
-        builder = new NotificationCompat.Builder(this, "channnel3")
+        builder = new NotificationCompat.Builder(this, "channel3")
                 .setSmallIcon(android.R.drawable.ic_menu_send)
                 .setStyle(style);
 
